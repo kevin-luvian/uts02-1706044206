@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://thymleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>View Pustakawan</title>
+    
+    <object th:include="fragments/fragment :: css" th:remove="tag"></object>
+    <object th:include="fragments/fragment :: js" th:remove="tag"></object>
+    
+</head>
+<body>
+    <nav th:replace="fragments/fragment :: navbar"></nav>
+
+    <br/>
+
+    <div>
+        <h2>SUKSES!</h2>
+        <p th:text="'Pustakawan dengan NIP: ' + ${pustakawan.nip} + ' berhasil diubah'"></p>
+    </div>
+
+    <div class="container container-fluid">
+        <div class="card">
+            <div class="card-header text-white bg-dark">
+                Detail Pustakawan
+            </div>
+            <div class="card-body">
+                <p th:text="'NIP: ' + ${pustakawan.nip}"></p>
+                <p th:text="'Nama: ' + ${pustakawan.nama}"></p>
+                <p th:text="'Jenis Kelamin: ' + ${pustakawan.jenisKelamin}"></p>
+                <p th:text="'Tanggal Lahir: ' + ${pustakawan.tanggalLahir}"></p>
+                <p th:text="'Alamat: ' + ${pustakawan.alamat}"></p>
+                <p th:text="'No. Hp: ' + ${pustakawan.noHp}"></p>
+                <p th:text="'Spesialisasi: ' + ${pustakawan.spesialisasi}"></p>
+                <p th:text="'Status: ' + ${pustakawan.status}"></p>
+                <div>
+                    <a class="btn btn-success" th:href="@{/pustakawan/update/} + ${pustakawan.nip}" role="button">Update</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

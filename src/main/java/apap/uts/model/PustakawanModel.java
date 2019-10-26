@@ -4,7 +4,9 @@ import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import java.util.Calendar;
 import java.util.Date;
+import java.util.TimeZone;
 
 @Entity
 @Table
@@ -46,7 +48,29 @@ public class PustakawanModel {
     @Column(name = "status", nullable = false)
     private int status;
 
-    public int getId() {
+    public String toStringJenisKelamin(){
+        if(jenisKelamin == 1) return "laki-laki";
+        else if(jenisKelamin == 2) return "perempuan";
+        return "undefined";
+    }
+
+    public String toStringStatus(){
+        if(status == 1) return "full-time";
+        else if(status == 2) return "part-time";
+        return "undefined";
+    }
+
+    public String toStringTanggalLahir() {
+        Calendar cal = Calendar.getInstance(TimeZone.getTimeZone("Asia/Jakarta"));
+        cal.setTime(getTanggalLahir());
+        String year = String.format("%04d", cal.get(Calendar.YEAR));
+        String month = String.format("%02d", cal.get(Calendar.MONTH)+1);
+        String day = String.format("%02d",cal.get(Calendar.DAY_OF_MONTH));
+
+        return year+"-"+month+"-"+day;
+    }
+
+    public Integer getId() {
         return id;
     }
 
